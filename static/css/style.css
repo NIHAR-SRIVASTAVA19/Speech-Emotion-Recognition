@@ -1,0 +1,270 @@
+/* Basic Reset & Typography */
+:root {
+    --primary-color: #5b62e4;
+    --secondary-color: #a3a6ff;
+    --text-dark: #333;
+    --text-light: #f9f9f9;
+    --bg-light: #f5f6fa;
+    --card-bg: #ffffff;
+    --border-color: #e0e0e0;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom right, #525be3, #d1d8f5); /* Soft gradient background */
+    color: var(--text-dark);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    /* box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); */
+    width: 100%;
+    max-width: 80%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Header Styling */
+.header {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.header h1 {
+    color: var(--primary-color);
+    font-size: 2.8em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.header p {
+    color: #666;
+    font-size: 1.1em;
+}
+
+/* Main Content Area */
+.content-area {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 5px 20px var(--shadow-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.input-card {
+    flex: 1;
+    min-height: 250px;
+}
+
+.input-card h2 {
+    color: var(--primary-color);
+    font-size: 1.4em;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-card h2 i {
+    font-size: 1.2em;
+}
+
+/* File Input Styling */
+.file-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+
+.custom-file-label {
+    background-color: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.custom-file-label:hover {
+    background-color: rgba(91, 98, 228, 0.1);
+}
+
+input[type="file"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1em;
+    color: var(--text-dark);
+}
+
+/* Button Styling */
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    box-shadow: 0 4px 15px rgba(91, 98, 228, 0.3);
+}
+
+.primary-btn:hover {
+    box-shadow: 0 6px 20px rgba(91, 98, 228, 0.4);
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    box-shadow: 0 4px 15px rgba(163, 166, 255, 0.3);
+}
+
+.secondary-btn:hover {
+    box-shadow: 0 6px 20px rgba(163, 166, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.mic-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.recording-status-text {
+    font-style: italic;
+    color: #666;
+    min-height: 20px;
+}
+
+.mobile-analyze-btn {
+    display: none; /* Hide on desktop */
+}
+
+/* Separator */
+.separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0;
+    color: #999;
+    flex-basis: 100%; /* Important for wrapping */
+    max-width: 40px; /* Small width to not take up space on desktop */
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex-grow: 1;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 0 10px;
+}
+
+.or-text {
+    background-color: var(--card-bg);
+    padding: 0 10px;
+    font-weight: 600;
+}
+
+/* Result Section */
+.result-section {
+    min-height: 120px;
+    justify-content: center;
+}
+
+.result-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.emotion-display {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .content-area {
+        flex-direction: column; /* Stacks cards vertically on small screens */
+        gap: 20px;
+    }
+
+    .wrapper {
+        padding: 20px;
+    }
+
+    .separator {
+        max-width: 100%; /* Separator spans full width */
+    }
+
+    .input-card {
+        width: 100%;
+    }
+    
+    .mic-controls {
+        flex-direction: column; /* Stack mic buttons vertically */
+    }
+
+    .btn {
+        width: 100%; /* Full width buttons on mobile */
+    }
+    
+    .mic-section #uploadButton {
+        display: none; /* Hide desktop analyze button */
+    }
+    
+    .mobile-analyze-btn {
+        display: block; /* Show mobile analyze button */
+        width: 100%;
+    }
+}
