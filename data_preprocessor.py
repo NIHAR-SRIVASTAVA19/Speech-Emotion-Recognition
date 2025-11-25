@@ -41,10 +41,17 @@ def extract_features(audio_file_path):
     # Chroma feature (12-bin representation of pitch classes)
     chroma = np.mean(librosa.feature.chroma_stft(y=y, sr=sr).T, axis=0)
 
+    mel = np.mean(librosa.feature.melspectrogram(y=y, sr=sr).T, axis=0)
+    contrast = np.mean(librosa.feature.spectral_contrast(y=y, sr=sr).T, axis=0)
+    tonnetz = np.mean(librosa.feature.tonnetz(y=librosa.effects.harmonic(y), sr=sr).T, axis=0)
+
+    feature_vector = np.hstack([mfccs, [pitch_mean], [zcr], [rms], chroma, mel, contrast, tonnetz])
+
+
     # Combine all features into a single FLAT 1D vector
     # mfccs and chroma are already 1D arrays (40 and 12 elements respectively).
     # pitch_mean, zcr, rms are scalars, so we put them in a list to stack.
-    feature_vector = np.hstack([mfccs, [pitch_mean], [zcr], [rms], chroma])
+    # feature_vector = np.hstack([mfccs, [pitch_mean], [zcr], [rms], chroma])
     
     return feature_vector
 
@@ -123,12 +130,28 @@ num_chroma = 12 # Chroma has 12 bins by default
 # Total number of features: 40 (mfccs) + 1 (pitch) + 1 (zcr) + 1 (rms) + 12 (chroma) = 55
 
 # Create column names
-mfcc_cols = [f'mfcc_{i}' for i in range(num_mfccs)]
-chroma_cols = [f'chroma_{i}' for i in range(num_chroma)]
+# MFCC columns
+mfcc_cols = [f'mfcc_{i}' for i in range(40)]
+
+# Scalars
 other_scalar_cols = ['pitch_mean', 'zcr', 'rms']
 
-# Combine all feature column names in the correct order as they were stacked in extract_features
-all_feature_columns = mfcc_cols + other_scalar_cols + chroma_cols
+# Chroma columns
+chroma_cols = [f'chroma_{i}' for i in range(12)]
+
+# Mel Spectrogram columns
+mel_cols = [f'mel_{i}' for i in range(128)]
+
+# Spectral Contrast columns
+contrast_cols = [f'contrast_{i}' for i in range(7)]
+
+# Tonnetz columns
+tonnetz_cols = [f'tonnetz_{i}' for i in range(6)]
+
+# Combine all
+all_feature_columns = mfcc_cols + other_scalar_cols + chroma_cols + mel_cols + contrast_cols + tonnetz_cols
+
+# Add emotion label
 df_columns = all_feature_columns + ['emotion']
 
 

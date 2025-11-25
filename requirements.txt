@@ -3,3 +3,5 @@ librosa
 matplotlib
 sklearn
 Flask
+pandas
+ipykernel

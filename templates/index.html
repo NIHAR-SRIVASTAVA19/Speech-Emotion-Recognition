@@ -1,44 +1,69 @@
 <!DOCTYPE html>
-<html lang="en"><i class="fas fa-upload"></i>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>EmotionPulse AI</title>
+    <!-- Link to your CSS file -->
     <link rel='stylesheet' href="{{url_for('static',filename='css/style.css')}}">
+    <!-- Using a generic Font Awesome Kit ID for demonstration -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* Basic styling for the new global status area */
+        .global-status {
+            text-align: center;
+            padding: 15px 0;
+            min-height: 50px; /* Ensure space is reserved */
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <header class="header"><h1>Welcome to EmotionPulse AI</h1>
-        <p>Detecting Emotion from Speech with Machine Leaning</p>
+        <header class="header">
+            <h1>Welcome to EmotionPulse AI</h1>
+            <p>Detecting Emotion from Speech with Machine Learning</p>
         </header>
 
         <main class="content-area">
+            
+            <!-- Upload Section -->
             <div class="card input-card upload-section">
-                <h2>Upload Audio</h2>
-                <input type="file" id="audiofile" accept="audio\*">
+                <h2><i class="fas fa-upload"></i>Upload Audio</h2>
+                <input type="file" id="audiofile" accept="audio/*">
                 <button id="uploadButton" class="btn primary-btn">Analyze File</button>
             </div>
 
-            <div class="seperator">
+            <!-- Separator -->
+            <div class="separator">
                 <span class="or-text">OR</span>
             </div>
 
+            <!-- Mic Section -->
             <div class="card input-card mic-section">
                 <h2><i class="fas fa-microphone-alt"></i>Record Live Speech</h2>
                 <div class="mic-controls">
-                    <button id="recordButton" class="btn primary-btn">Start Recoding</button>
-                    <button id="stopButton" class="btn secondary-btn" disabled>Shavel</button>
+                    <button id="recordButton" class="btn primary-btn">Start Recording</button>
+                    <!-- Corrected typo: "Shavel" to "Stop Recording" -->
+                    <button id="stopButton" class="btn secondary-btn" disabled>Stop Recording</button>
                 </div>
-                <p id="statusText" class="recording status-text">Press "Start Recording" to begin...</p>
+                <!-- The statusText is REMOVED from here -->
             </div>
-
         </main>
+        
+        <!-- NEW: Global Status Container for both Upload and Recording -->
+        <div class="global-status">
+            <!-- MOVED the status text here to be neutral and centralized -->
+            <p id="statusText" class="recording-status-text">Press "Analyze File" or "Start Recording" to begin...</p>
+        </div>
+        
+        <!-- Result Section -->
         <section class="result-section card">
             <h2>Predicted Emotion</h2>
             <p id="emotionResult" class="emotion-display" >The Predicted Emotion will appear here</p>
         </section>
     </div>
-    <script src="https://kit.fontawesome.com/your-font-awesome-kit-id.js" crossorigin="anonymous"></script>
+    
+    <!-- Link to your JavaScript file (must be after all elements) -->
     <script src="{{url_for('static',filename='js/app.js')}}"></script>
 </body>
 </html>
